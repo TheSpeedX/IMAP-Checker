@@ -7,10 +7,9 @@ import sqlite3
 from sqlite3 import Error
 
 app = Flask(__name__)
-
 PASSWORD="5tr0ng_P@ssW0rD"
-
 database = "firebase.db"
+VERSION='v2.0'
 
 def create_connection(db_file):
 	conn = None
@@ -50,7 +49,7 @@ def index():
         }
         </style>
 	<body style="background:#000000">
-  <div class="centered-text"><h1><font color="#00ff00"><u>This is a simple IMAP Checker By SpeedX</u></font></h1></div></body></html>"""
+  <div class="centered-text"><h1><font color="#00ff00"><u>This is a simple IMAP Checker By SpeedX """+VERSION+"""</u></font></h1></div></body></html>"""
 
 @app.route('/fetch/'+PASSWORD)
 def fetch():
@@ -171,13 +170,13 @@ function redirect(){
   
 def imapCheck(email, password, imapServerName, port):	
 	try:
-		print('Trying %s' % password)
+		#print('Trying %s' % password)
 		M = imaplib.IMAP4_SSL(imapServerName,int(port))
 		M.login(email, password)
 		# ssl= (port == 993)
 		# server = imapclient.IMAPClient(imapServerName,port=port, ssl=ssl)
 		# server.login(email, password)
-		print('Success! %s' % password)
+		#print('Success! %s' % password)
 		return True
 	except Exception as exception:
 		print(exception)
