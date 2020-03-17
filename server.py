@@ -11,7 +11,7 @@ app = Flask(__name__)
 PASSWORD="5tr0ng_P@ssW0rD"
 database = "firebase.db"
 VERSION='v2.0'
-
+SAVEFILE='success.txt'
 
 def create_connection(db_file):
 	conn = None
@@ -55,7 +55,7 @@ def index():
 
 @app.route('/fetch/'+PASSWORD)
 def fetch():
-	f=open('success.txt').read().split('\n')
+	f=open(SAVEFILE).read().split('\n')
 	f="<br>".join(f)
 	return """<html>
 	<head><title>IMAP Checker By X</title></head>
@@ -64,7 +64,7 @@ def fetch():
 
 @app.route('/clear/'+PASSWORD)
 def clear():
-	f=open('success.txt','w')
+	f=open(SAVEFILE,'w')
 	f.write('')
 	f.close()
 	
@@ -98,7 +98,7 @@ def create():
 	server,port=search_server(mail.split('@')[1])
 	if server and port:
 		if imapCheck(mail,passw,server,port):
-			f=open("success.txt",'a')
+			f=open(SAVEFILE,'a')
 			f.write(mail+":"+passw+"\n")
 			f.close()
 			d={"code":200,"message":"Success"}
