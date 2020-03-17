@@ -179,7 +179,7 @@ def imapCheck(email, password, imapServerName, port):
 		#print('Success! %s' % password)
 		return True
 	except Exception as exception:
-		print(exception)
+		#print(exception)
 		return False
 
 def search_server(domain):
