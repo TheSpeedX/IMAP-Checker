@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 from server import *
 import re
 
@@ -12,12 +13,15 @@ parser.add_argument('-v','--version', action='version', version='IMAP_Checker '+
 results = parser.parse_args()
 input_file=results.input_file
 output_file=results.output_file if results.output_file else "success.txt"
-print("[+]\tLoading "+input_file+" ...")
 if os.path.isfile(input_file):
+	print("[+]\tLoading "+input_file+" ...")
 	input_stream = open(input_file, 'r')
 	text = input_stream.read()
 	input_stream.close()
-	matches = re.findall("(.*@.*\..*):(.*)", text)
+	matches = re.findall(r"([a-z0-9]*@[a-z0-9]*\.[a-z]*):(.*)", text)
+else:
+	print("[-]\t"+input_file+" Not Found !!!")
+	sys.exit()
 print("[*]\t"+input_file+" Loaded !!!")
 print("[+]\tStarting Scan...")
 for mail,passw in matches:
