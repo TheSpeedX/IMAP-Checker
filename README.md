@@ -17,8 +17,8 @@ python3 -m pip install requirements.txt
 Start Server:
 ```python3 server.py```
 
-Now To check send JSON data POST Request to:
-```http://yourdomain.com/check```
+Now To check send JSON data POST Request to: ```http://yourdomain.com/check```
+<br>
 The JSON data format: ```{"email":"mail@domain.com","password":"mypassword"}```
 
 ### Starting Command Line Version
